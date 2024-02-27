@@ -1,0 +1,67 @@
+#! /opt/homebrew/Cellar/icarus-verilog/12.0/bin/vvp
+:ivl_version "12.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/system.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/v2005_math.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/va_math.vpi";
+S_0x12a60d6e0 .scope module, "tb32bitadd" "tb32bitadd" 2 9;
+ .timescale 0 0;
+v0x12a61e940_0 .net "Cout", 0 0, L_0x12a61ebe0;  1 drivers
+v0x12a61e9d0_0 .var "IN1", 31 0;
+v0x12a61ea60_0 .var "IN2", 31 0;
+v0x12a61eb30_0 .net "OUT", 31 0, L_0x12a61ecc0;  1 drivers
+S_0x12a607540 .scope module, "a1" "FA_dataflow" 2 13, 2 1 0, S_0x12a60d6e0;
+ .timescale 0 0;
+    .port_info 0 /OUTPUT 1 "Cout";
+    .port_info 1 /OUTPUT 32 "Sum";
+    .port_info 2 /INPUT 32 "In1";
+    .port_info 3 /INPUT 32 "In2";
+    .port_info 4 /INPUT 1 "Cin";
+L_0x1300780a0 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v0x12a6088f0_0 .net "Cin", 0 0, L_0x1300780a0;  1 drivers
+v0x12a61e0b0_0 .net "Cout", 0 0, L_0x12a61ebe0;  alias, 1 drivers
+v0x12a61e150_0 .net "In1", 31 0, v0x12a61e9d0_0;  1 drivers
+v0x12a61e1f0_0 .net "In2", 31 0, v0x12a61ea60_0;  1 drivers
+v0x12a61e2a0_0 .net "Sum", 31 0, L_0x12a61ecc0;  alias, 1 drivers
+L_0x130078058 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v0x12a61e390_0 .net *"_ivl_10", 0 0, L_0x130078058;  1 drivers
+v0x12a61e440_0 .net *"_ivl_11", 32 0, L_0x12a61f060;  1 drivers
+L_0x1300780e8 .functor BUFT 1, C4<000000000000000000000000000000000>, C4<0>, C4<0>, C4<0>;
+v0x12a61e4f0_0 .net *"_ivl_13", 32 0, L_0x1300780e8;  1 drivers
+v0x12a61e5a0_0 .net *"_ivl_17", 32 0, L_0x12a61f1d0;  1 drivers
+v0x12a61e6b0_0 .net *"_ivl_3", 32 0, L_0x12a61ede0;  1 drivers
+L_0x130078010 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v0x12a61e760_0 .net *"_ivl_6", 0 0, L_0x130078010;  1 drivers
+v0x12a61e810_0 .net *"_ivl_7", 32 0, L_0x12a61ef20;  1 drivers
+L_0x12a61ebe0 .part L_0x12a61f1d0, 32, 1;
+L_0x12a61ecc0 .part L_0x12a61f1d0, 0, 32;
+L_0x12a61ede0 .concat [ 32 1 0 0], v0x12a61e9d0_0, L_0x130078010;
+L_0x12a61ef20 .concat [ 32 1 0 0], v0x12a61ea60_0, L_0x130078058;
+L_0x12a61f060 .arith/sum 33, L_0x12a61ede0, L_0x12a61ef20;
+L_0x12a61f1d0 .arith/sum 33, L_0x12a61f060, L_0x1300780e8;
+    .scope S_0x12a60d6e0;
+T_0 ;
+    %vpi_call 2 16 "$monitor", "%b %b %b %b", v0x12a61e940_0, v0x12a61eb30_0, v0x12a61e9d0_0, v0x12a61ea60_0 {0 0 0};
+    %end;
+    .thread T_0;
+    .scope S_0x12a60d6e0;
+T_1 ;
+    %pushi/vec4 42405, 0, 32;
+    %store/vec4 v0x12a61e9d0_0, 0, 32;
+    %pushi/vec4 23130, 0, 32;
+    %store/vec4 v0x12a61ea60_0, 0, 32;
+    %delay 100, 0;
+    %pushi/vec4 23130, 0, 32;
+    %store/vec4 v0x12a61e9d0_0, 0, 32;
+    %delay 400, 0;
+    %vpi_call 2 23 "$finish" {0 0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "32bitadder.v";

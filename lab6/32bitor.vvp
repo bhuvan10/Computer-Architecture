@@ -1,0 +1,48 @@
+#! /opt/homebrew/Cellar/icarus-verilog/12.0/bin/vvp
+:ivl_version "12.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/system.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/v2005_math.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/va_math.vpi";
+S_0x121608510 .scope module, "tb32bitor" "tb32bitor" 2 6;
+ .timescale 0 0;
+v0x12161bf30_0 .var "IN1", 31 0;
+v0x12161bfe0_0 .var "IN2", 31 0;
+v0x12161c090_0 .net "OUT", 31 0, L_0x12161c160;  1 drivers
+S_0x121607540 .scope module, "a1" "bit32OR" 2 9, 2 1 0, S_0x121608510;
+ .timescale 0 0;
+    .port_info 0 /OUTPUT 32 "out";
+    .port_info 1 /INPUT 32 "in1";
+    .port_info 2 /INPUT 32 "in2";
+L_0x12161c240 .functor OR 32, v0x12161bf30_0, v0x12161bfe0_0, C4<00000000000000000000000000000000>, C4<00000000000000000000000000000000>;
+v0x1216076b0_0 .net *"_ivl_2", 31 0, L_0x12161c240;  1 drivers
+v0x12161bcc0_0 .net "in1", 31 0, v0x12161bf30_0;  1 drivers
+v0x12161bd70_0 .net "in2", 31 0, v0x12161bfe0_0;  1 drivers
+v0x12161be30_0 .net "out", 31 0, L_0x12161c160;  alias, 1 drivers
+L_0x12161c160 .part L_0x12161c240, 0, 32;
+    .scope S_0x121608510;
+T_0 ;
+    %vpi_call 2 12 "$monitor", "%b %b %b", v0x12161c090_0, v0x12161bf30_0, v0x12161bfe0_0 {0 0 0};
+    %end;
+    .thread T_0;
+    .scope S_0x121608510;
+T_1 ;
+    %pushi/vec4 42405, 0, 32;
+    %store/vec4 v0x12161bf30_0, 0, 32;
+    %pushi/vec4 23130, 0, 32;
+    %store/vec4 v0x12161bfe0_0, 0, 32;
+    %delay 100, 0;
+    %pushi/vec4 23130, 0, 32;
+    %store/vec4 v0x12161bf30_0, 0, 32;
+    %delay 400, 0;
+    %vpi_call 2 19 "$finish" {0 0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "32bitor.v";

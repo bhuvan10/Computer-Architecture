@@ -1,0 +1,48 @@
+#! /opt/homebrew/Cellar/icarus-verilog/12.0/bin/vvp
+:ivl_version "12.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/system.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/v2005_math.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/va_math.vpi";
+S_0x133608510 .scope module, "tb32bitand" "tb32bitand" 2 6;
+ .timescale 0 0;
+v0x13361bf30_0 .var "IN1", 31 0;
+v0x13361bfe0_0 .var "IN2", 31 0;
+v0x13361c090_0 .net "OUT", 31 0, L_0x13361c160;  1 drivers
+S_0x133607540 .scope module, "a1" "bit32AND" 2 9, 2 1 0, S_0x133608510;
+ .timescale 0 0;
+    .port_info 0 /OUTPUT 32 "out";
+    .port_info 1 /INPUT 32 "in1";
+    .port_info 2 /INPUT 32 "in2";
+L_0x13361c240 .functor AND 32, v0x13361bf30_0, v0x13361bfe0_0, C4<11111111111111111111111111111111>, C4<11111111111111111111111111111111>;
+v0x1336076b0_0 .net *"_ivl_2", 31 0, L_0x13361c240;  1 drivers
+v0x13361bcc0_0 .net "in1", 31 0, v0x13361bf30_0;  1 drivers
+v0x13361bd70_0 .net "in2", 31 0, v0x13361bfe0_0;  1 drivers
+v0x13361be30_0 .net "out", 31 0, L_0x13361c160;  alias, 1 drivers
+L_0x13361c160 .part L_0x13361c240, 0, 32;
+    .scope S_0x133608510;
+T_0 ;
+    %vpi_call 2 12 "$monitor", "%b %b %b", v0x13361c090_0, v0x13361bf30_0, v0x13361bfe0_0 {0 0 0};
+    %end;
+    .thread T_0;
+    .scope S_0x133608510;
+T_1 ;
+    %pushi/vec4 42405, 0, 32;
+    %store/vec4 v0x13361bf30_0, 0, 32;
+    %pushi/vec4 23130, 0, 32;
+    %store/vec4 v0x13361bfe0_0, 0, 32;
+    %delay 100, 0;
+    %pushi/vec4 23130, 0, 32;
+    %store/vec4 v0x13361bf30_0, 0, 32;
+    %delay 400, 0;
+    %vpi_call 2 19 "$finish" {0 0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "32bitand.v";
